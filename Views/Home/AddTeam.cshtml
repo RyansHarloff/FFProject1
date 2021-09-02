@@ -1,0 +1,42 @@
+@model Team
+<partial name = "_NavPartial"/>
+
+<h1 class="text-center">Edit Team</h1>
+<form action = "AddTeamtoDb" method = "post">
+    <div class = "form-group">
+        <label for = "TeamName">Team Name</label>
+        <input asp-for = "TeamName" class = "form-control">
+        <span asp-validation-for = "TeamName"></span>
+        </div>
+    <div class = "form-group">
+        <label for = "PointType">Scoring type</label>
+        <select name = "PointType" class = "form-control">
+            <option>Standard</option>
+            <option>PPR</option>
+            <option>2 Quaterbacks</option>
+        </select>
+    </div>
+    <div class = "form-group">
+        <label for = "TeamOwner">Team Owner</label>
+        <input asp-for = "TeamOwner" class = "form-control">
+        <span asp-validation-for = "TeamOwner"></span>
+    </div>
+    <input type="submit" value = "Add Team" class= "btn btn-dark">
+</form>
+<br/>
+<h2 class="text-center"></h2>
+            <table class = "table table-hover table-bordered table-dark">
+                <tr>
+                    <th>Team Name</th>
+                    <th>League type</th>
+                    <th>Team Owner</th>
+                </tr>
+                @foreach (Team p in ViewBag.OtherTeams)
+                {
+                    <tr>
+                        <td>@p.TeamName</td>
+                        <td>@p.PointType</td>
+                        <td>@p.TeamOwner</td>
+                    </tr>
+                }
+            </table>

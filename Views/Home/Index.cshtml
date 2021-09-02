@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <div class="text-center">
+        <br/>
+        <img src="~/Images/fantasy-football-shield.jpg" alt="FF">
+    </div>
+    <br/>
+    <h3 class="text-center">Please Register or Login to Enter</h3>
+    <br/>
+    <div class="row">
+        <div class ="col-6">
+            <partial name = "_RegPartial" />
+        </div>
+        <div class ="col-6">
+            <partial name = "_LogPartial" />
+        </div>
+    </div>
+</div>

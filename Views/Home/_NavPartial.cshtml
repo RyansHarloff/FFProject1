@@ -1,0 +1,30 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Dashboard"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item" style = "margin:5px">
+                        <a class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">Home</a>
+                    </li>
+                    <li class="nav-item" style = "margin:5px">
+                        <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="AddPlayer">Add Player</a>
+                    </li>
+                    <li class="nav-item" style = "margin:5px">
+                        <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="AddTeam">Add Team</a>
+                    </li>
+                    <li class="nav-item" style = "margin:5px">
+                        <a class="btn btn-dark" class = "margin-" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item" style = "margin:5px">
+                        <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

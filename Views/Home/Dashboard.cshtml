@@ -1,0 +1,47 @@
+<partial name = "_NavPartial"/>
+
+<h1 class="text-center">Welcome to Fantasy Football Focus</h1>
+<br/>
+<br/>
+<div class = "row">
+    <div class="col-6">
+        <h2 class="text-center">My Players</h2>
+        <br/>
+        <table class = "table table-hover table-bordered table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Team</th>
+                <th>Starter</th>
+                <th>Fantasy Team</th>
+            </tr>
+            @foreach (Player p in ViewBag.Player)
+            {
+                <tr>
+                    <td>@p.FirstName @p.LastName</td>
+                    <td>@p.Position</td>
+                    <td>@p.Team</td>
+                    <td>@p.Starter</td>
+                    <td>@p.FantasyTeam</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class = "col -6">
+        <h2 class = "text-center">My Teams</h2>
+        <br/>
+        <table class = "table table-hover table-bordered table-dark">
+                <th>Team Name</th>
+                <th>League Type</th>
+                <th>Team Owner</th>
+                @foreach (Team r in ViewBag.OtherTeams)
+            {
+                <tr>
+                    <td>@r.TeamName</td>
+                    <td>@r.PointType</td>
+                    <td>@r.TeamOwner</td>
+                </tr>
+            }
+        </table>
+    </div> 
+</div>

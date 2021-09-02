@@ -1,0 +1,21 @@
+@model User
+
+<h3 class = "text-center">Register Team</h3>
+<form action = "register" method = "post">
+    <div class = "form-group">
+        <label for="Email">Email</label>
+        <input asp-for= "Email" class = "form-control">
+        <span asp-validation-for="Email" class = "text-danger"></span>
+    </div>
+    <div class = "form-group">
+        <label for="Password">Password</label>
+        <input asp-for= "Password" class = "form-control">
+        <span asp-validation-for="Password" class = "text-danger"></span>
+    </div>
+    <div class = "form-group">
+        <label for="Confirm">Confirm Password</label>
+        <input asp-for= "Confirm" class = "form-control">
+        <span asp-validation-for="Confirm" class = "text-danger"></span>
+    </div>
+    <input type="submit" value = "Register" class = "btn btn-dark">
+</form>
