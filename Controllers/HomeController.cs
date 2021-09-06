@@ -84,8 +84,9 @@ namespace FFProject1.Controllers
             int? loggedIn = HttpContext.Session.GetInt32("loggedIn");
             if(loggedIn != null)
             {
-                ViewBag.Player =_context.Players.ToList();
-                ViewBag.OtherTeams =_context.UserTeams.ToList();
+                ViewBag.Player =_context.Players.Include(s => s.UsersWhoWatched).Where(a => a.UserId == (int)loggedIn).ToList();
+                ViewBag.OtherTeams =_context.UserTeams.OrderBy(g => g.TeamName).ToList();
+                ViewBag.User = _context.Users.Include(h => h.AllPlayers).FirstOrDefault(t => t.UserId == (int)loggedIn);
                 return View();
             } else{
                 return RedirectToAction("Dashboard");
@@ -173,18 +174,48 @@ namespace FFProject1.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpGet("oneTeam/{TeamId}")]
-        public IActionResult OneTeam(int TeamId)
-        {
-            int? loggedIn = HttpContext.Session.GetInt32("loggedIn");
-            if(loggedIn != null)
-            {
-                return View();
-            } else {
+        [HttpGet("UpdatePlayer/{PlayerId}")]
+        public IActionResult UpdatePlayer(int PlayerId) {
+            Player PlayerToUpdate = _context.Players.FirstOrDefault(j => j.PlayerId == PlayerId);
+            ViewBag.Player =_context.Players.ToList();
+            return View(PlayerToUpdate);
+        }
+        [HttpPost("UpdatePlayerInDb/{PlayerId}")]
+        public IActionResult UpdatePlayerInDb(int PlayerId, Player PlayerToUpdate) {
+            Player oldPlayer = _context.Players.FirstOrDefault(a => a.PlayerId == PlayerId);
+            if(ModelState.IsValid) {
+                oldPlayer.FirstName = PlayerToUpdate.FirstName;
+                oldPlayer.LastName = PlayerToUpdate.LastName;
+                oldPlayer.Position = PlayerToUpdate.Position;
+                oldPlayer.Starter = PlayerToUpdate.Starter;
+                oldPlayer.FantasyTeam = PlayerToUpdate.FantasyTeam;
+                oldPlayer.Team = PlayerToUpdate.Team;
+                _context.SaveChanges();
                 return RedirectToAction("Dashboard");
+            } else {
+                return View("Update", oldPlayer);
             }
         }
 
+        [HttpGet("UpdateTeam/{TeamId}")]
+        public IActionResult UpdateTeam(int TeamId) {
+            Team TeamToUpdate = _context.UserTeams.FirstOrDefault(j => j.TeamId == TeamId);
+            ViewBag.Teams =_context.UserTeams.ToList();
+            return View(TeamToUpdate);
+        }
+        [HttpPost("UpdateTeamInDb/{TeamId}")]
+        public IActionResult UpdateTeamInDb(int TeamId, Team TeamToUpdate) {
+            Team oldTeam = _context.UserTeams.FirstOrDefault(a => a.TeamId == TeamId);
+            if(ModelState.IsValid) {
+                oldTeam.TeamName = TeamToUpdate.TeamName;
+                oldTeam.PointType = TeamToUpdate.PointType;
+                oldTeam.TeamOwner = TeamToUpdate.TeamOwner;
+                _context.SaveChanges();
+                return RedirectToAction("Dashboard");
+            } else {
+                return View("Update", oldTeam);
+            }
+        }
         [HttpGet("contact")]
         public IActionResult Contact()
         {
@@ -198,7 +229,15 @@ namespace FFProject1.Controllers
             _context.SaveChanges();
             return RedirectToAction("Dashboard");
         }
-        
+
+        [HttpGet("/deleteteam/{TeamId}")]
+        public IActionResult Deleteteam(int TeamId)
+        {
+            Team TeamtoDelete = _context.UserTeams.SingleOrDefault(a => a.TeamId == TeamId);
+            _context.UserTeams.Remove(TeamtoDelete);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
         [HttpGet("logout")]
         public IActionResult Logout()
         {

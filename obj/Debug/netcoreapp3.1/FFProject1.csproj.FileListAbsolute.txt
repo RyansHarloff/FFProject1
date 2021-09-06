@@ -64,3 +64,5 @@ C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\
 C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\staticwebassets\FFProject1.StaticWebAssets.xml
 C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\FFProject1.genruntimeconfig.cache
 C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\Razor\Views\Home\UpdatePlayer.cshtml.g.cs
+C:\Users\ryans\OneDrive\Desktop\Job Projects\FFProject1\obj\Debug\netcoreapp3.1\Razor\Views\Home\UpdateTeam.cshtml.g.cs

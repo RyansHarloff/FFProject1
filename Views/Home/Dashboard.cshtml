@@ -14,6 +14,8 @@
                 <th>Team</th>
                 <th>Starter</th>
                 <th>Fantasy Team</th>
+                <th>Edit Player</th>
+                <th>Player to Watch</th>
             </tr>
             @foreach (Player p in ViewBag.Player)
             {
@@ -23,6 +25,16 @@
                     <td>@p.Team</td>
                     <td>@p.Starter</td>
                     <td>@p.FantasyTeam</td>
+                    <td><a href="/UpdatePlayer/@p.PlayerId">Edit</a></td>
+                    <td>
+                        @{
+                            if(p.UsersWhoWatched.Any(a => a.UserId == ViewBag.User.UserId)) {
+                                <a href="unlike/@ViewBag.User.UserId/@p.PlayerId"><img src="~/Images/filled3.png" alt = "liked"/></a>
+                            } else{
+                                <a href="like/@ViewBag.User.UserId/@p.PlayerId"><img src="~/Images/unnamed12.png" alt = "not liked"/></a>
+                            }
+                        }
+                    </td>
                 </tr>
             }
         </table>
@@ -34,12 +46,14 @@
                 <th>Team Name</th>
                 <th>League Type</th>
                 <th>Team Owner</th>
+                <th>Edit Team</th>
                 @foreach (Team r in ViewBag.OtherTeams)
             {
                 <tr>
                     <td>@r.TeamName</td>
                     <td>@r.PointType</td>
                     <td>@r.TeamOwner</td>
+                    <td><a href="/UpdateTeam/@r.TeamId">Edit</a></td>
                 </tr>
             }
         </table>

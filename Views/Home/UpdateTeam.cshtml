@@ -2,7 +2,7 @@
 <partial name = "_NavPartial"/>
 
 <h1 class="text-center">Add Team</h1>
-<form action = "AddTeamtoDb" method = "post">
+<form action = "/UpdateTeamInDb/@Model.TeamId" method = "post">
     <div class = "form-group">
         <label for = "TeamName">Team Name</label>
         <input asp-for = "TeamName" class = "form-control">
@@ -30,13 +30,15 @@
                     <th>Team Name</th>
                     <th>League type</th>
                     <th>Team Owner</th>
+                    <th>Remove Team</th>
                 </tr>
-                @foreach (Team p in ViewBag.OtherTeams)
+                @foreach (Team p in ViewBag.Teams)
                 {
                     <tr>
                         <td>@p.TeamName</td>
                         <td>@p.PointType</td>
                         <td>@p.TeamOwner</td>
+                        <td><a href="/deleteteam/@p.TeamId">Remove</a></td>
                     </tr>
                 }
             </table>

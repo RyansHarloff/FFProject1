@@ -3,8 +3,8 @@
 
 <div class="row">
     <div class="col-6">
-        <h2 class="text-center">Add Player</h2>
-        <form action = "AddPlayertoDb" method = "post">
+        <h2 class="text-center">Edit Player</h2>
+        <form action = "/UpdatePlayerInDb/@Model.PlayerId" method = "post">
             <div class = "form-group">
                 <label for = "FirstName">First Name</label>
                 <input asp-for = "FirstName" class = "form-control">
@@ -82,7 +82,7 @@
                 <input asp-for = "FantasyTeam" class = "form-control">
                 <span asp-validation-for = "FantasyTeam"></span>
             </div>
-            <input type="submit" value = "Add Player" class= "btn btn-dark">
+            <input type="submit" value = "Update Player" class= "btn btn-dark">
         </form>
     </div>
     <div class="col-6">
@@ -93,8 +93,9 @@
                     <th>Name</th>
                     <th>Position</th>
                     <th>Team</th>
-                    <th>Starter</th>
+                    <th class="col-6">Starter</th>
                     <th>Fantasy Team</th>
+                    <th>Remove</th>
                 </tr>
                 @foreach (Player p in ViewBag.Player)
                 {
@@ -104,6 +105,7 @@
                         <td>@p.Team</td>
                         <td>@p.Starter</td>
                         <td>@p.FantasyTeam</td>
+                        <td><a href = "/delete/@p.PlayerId" class="btn btn-light">Remove</a></td>
                     </tr>
                 }
             </table>
